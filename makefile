@@ -8,7 +8,7 @@ build:
 
 .PHONY: deploy
 deploy:
-	echo ""
+	./scripts/deploy.sh
 
 .PHONY: default
 default: build
