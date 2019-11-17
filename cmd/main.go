@@ -1,20 +1,26 @@
 package main
 
 import (
-	"context"
 	"fmt"
 
+	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
-type MyEvent struct {
-	Name string `json:"name"`
-}
+func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-func HandleRequest(ctx context.Context, name MyEvent) (string, error) {
-	return fmt.Sprintf("Hello %s!", name.Name), nil
+	language := request.QueryStringParameters["language"]
+	if language == "" {
+		language = "en-US"
+	}
+
+	// seed := request.QueryStringParameters["seed"]
+
+	message := fmt.Sprintf(" { \"Message\" : \"Hello %s \" } ", language)
+
+	return events.APIGatewayProxyResponse{Body: message, StatusCode: 200}, nil
 }
 
 func main() {
-	lambda.Start(HandleRequest)
+	lambda.Start(Handler)
 }
