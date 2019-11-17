@@ -1,0 +1,34 @@
+[
+    {
+        "question": "Quelle est la taille, en mètre, de la Tour Eiffel ?",
+        "numberToGuess": 324
+    },
+    {
+        "question": "Quel est le prix, en euro, d'une voiture Tesla Model S P100D ?",
+        "numberToGuess": 143500
+    },
+    {
+        "question": "Quel est le nombre de joueurs sur le terrain pendant une partie de football ?",
+        "numberToGuess": 22
+    },
+    {
+        "question": "Quel est le nombre de pattes, en moyenne, d'un mille-pattes Illacme plenipes ?",
+        "numberToGuess": 600
+    },
+    {
+        "question": "Quel est l'age de John Cena ?",
+        "numberToGuess": 41
+    },
+    {
+        "question": "Quel est le poids, en tonnes, du porte-avions Charles de Gaulle?",
+        "numberToGuess": 37085
+    },
+    {
+        "question": "Quelle est la temperature, en degré Celsius, d'ébullition de l'eau à l'altitude de 8500 mètre?",
+        "numberToGuess": 71.4
+    },
+    {
+        "question": "Quelle est en kilomètre par heure, la vitesse maximal autorisé sur une autoroute en France?",
+        "numberToGuess": 130
+    }
+]
