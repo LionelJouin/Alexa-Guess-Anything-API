@@ -1,11 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
+	"net/http"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 )
+
+type Question struct {
+	Question      string `json:"Question"`
+	NumberToGuess string `json:"NumberToGuess"`
+}
 
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
@@ -16,9 +22,27 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 
 	// seed := request.QueryStringParameters["seed"]
 
-	message := fmt.Sprintf(" { \"Message\" : \"Hello %s \" } ", language)
+	question := &Question{
+		Question:      "test",
+		NumberToGuess: "132",
+	}
 
-	return events.APIGatewayProxyResponse{Body: message, StatusCode: 200}, nil
+	response, err := json.Marshal(question)
+	if err != nil {
+		return serverError(err)
+	}
+
+	return events.APIGatewayProxyResponse{
+		StatusCode: http.StatusOK,
+		Body:       string(response),
+	}, nil
+}
+
+func serverError(err error) (events.APIGatewayProxyResponse, error) {
+	return events.APIGatewayProxyResponse{
+		StatusCode: http.StatusInternalServerError,
+		Body:       http.StatusText(http.StatusInternalServerError),
+	}, nil
 }
 
 func main() {
